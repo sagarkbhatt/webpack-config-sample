@@ -1,8 +1,5 @@
 {
-  "name": "webpack-demo",
   "version": "1.0.0",
-  "description": "Experiment with WebPack",
-  "main": "index.php",
   "author": "",
   "devDependencies": {
     "babel-core": "^6.25.0",
