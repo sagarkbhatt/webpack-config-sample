@@ -1,5 +1,9 @@
-var path = require( 'path' );
-var webpack = require( 'webpack' );
+const path = require( 'path' );
+const webpack = require( 'webpack' );
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].css",
+});
 
 module.exports = {
  	devtool: 'source-map',
@@ -43,7 +47,26 @@ module.exports = {
 			options: {
 			  name: '[name].[ext]?[hash]'
 			}
-		}
+		},
+		{
+            test: /\.scss$/,
+            use: extractSass.extract({
+                use: [{
+                    loader: "css-loader"
+                }, {
+                    loader: "sass-loader"
+                }],
+                // use style-loader in development
+                fallback: "style-loader"
+            })
+        },
+		{
+			test: /\.css$/,
+			use: ExtractTextPlugin.extract({
+				fallback: "style-loader",
+				use: "css-loader"
+			})
+		},
 	]
   	},
 	resolve: {
@@ -56,7 +79,11 @@ module.exports = {
 	},
 	performance: {
 		hints: false
-	}
+	},
+	plugins: [
+		extractSass,
+		new ExtractTextPlugin("styles.css"),
+	]
 };
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev-test') {
 	module.exports.devtool = '#source-map';
