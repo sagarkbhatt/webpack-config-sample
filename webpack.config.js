@@ -59,14 +59,7 @@ module.exports = {
                 // use style-loader in development
                 fallback: "style-loader"
             })
-        },
-		{
-			test: /\.css$/,
-			use: ExtractTextPlugin.extract({
-				fallback: "style-loader",
-				use: "css-loader"
-			})
-		},
+        }
 	]
   	},
 	resolve: {
@@ -81,8 +74,7 @@ module.exports = {
 		hints: false
 	},
 	plugins: [
-		extractSass,
-		new ExtractTextPlugin("styles.css"),
+		extractSass
 	]
 };
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev-test') {
