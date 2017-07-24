@@ -1,0 +1,11 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "Experiment with WebPack",
+  "main": "index.php",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.3.0"
+  }
+}
