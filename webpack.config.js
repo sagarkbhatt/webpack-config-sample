@@ -2,7 +2,7 @@ var path = require( 'path' );
 var webpack = require( 'webpack' );
 
 module.exports = {
- 	devtool: 'eval-source-map',
+ 	devtool: 'source-map',
     entry:{
         home: './js/home/main.js',
         customizer:'./js/customizer/main.js',
@@ -16,6 +16,7 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
         filename: '[name].bundle.js',
+        sourceMapFilename: '[file].map'
     },
     externals: {
         'jquery' : 'jQuery'
@@ -57,8 +58,8 @@ module.exports = {
 		hints: false
 	}
 };
-if (process.env.NODE_ENV === 'production') {
-	module.exports.devtool = '#source-map'
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev-test') {
+	module.exports.devtool = '#source-map';
 	// http://vue-loader.vuejs.org/en/workflow/production.html
 	module.exports.plugins = (module.exports.plugins || []).concat([
 		new webpack.DefinePlugin({
