@@ -13,7 +13,8 @@ module.exports = {
         base: [ './js/post/main.js',
         './js/page/main.js',
         './js/single/main.js',
-        './js/archive/main.js'
+        './js/archive/main.js',
+		'./js/default/main.js'
         ]
     },
     output: {
