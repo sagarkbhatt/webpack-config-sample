@@ -6,6 +6,7 @@
     "wp": true,
     "__dirname": true
   },
+  "parser": "babel-eslint",
   "rules": {
       "array-bracket-spacing": [ "error", "always" ],
       "brace-style": [ "error", "1tbs" ],
