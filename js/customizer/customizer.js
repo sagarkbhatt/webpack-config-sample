@@ -5,7 +5,7 @@
  *
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
-export function customizer() {
+export function customizer( $ ) {
 
 	// Site title and description.
 	wp.customize( 'blogname', value => {

@@ -1,2 +1,2 @@
 import { customizer } from './customizer';
-customizer();
+customizer( jQuery );
