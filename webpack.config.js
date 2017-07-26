@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractSass = new ExtractTextPlugin({
     filename: "[name].css",
 });
-
+const WebpackCleanupPlugin = require( 'webpack-cleanup-plugin' );
 module.exports = {
  	devtool: 'source-map',
     entry:{
@@ -76,6 +76,7 @@ module.exports = {
 	},
 	plugins: [
 		extractSass,
+		new WebpackCleanupPlugin(),
 		//   new webpack.ProvidePlugin({
 		// 	$: 'jquery',
 		// 	jQuery: 'jquery',
