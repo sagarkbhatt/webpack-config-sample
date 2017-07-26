@@ -8,78 +8,78 @@
  */
 
 if ( ! function_exists( 'blank_theme_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function blank_theme_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on blank_theme, use a find and replace
-	 * to change 'blank_theme' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'blank_theme', get_template_directory() . '/languages' );
-
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
-	add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'menu-1' => esc_html__( 'Primary', 'blank_theme' ),
-	) );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'blank_theme_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
-
-	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
-
 	/**
-	 * Add support for core custom logo.
+	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
 	 */
-	add_theme_support( 'custom-logo', array(
-		'height'      => 250,
-		'width'       => 250,
-		'flex-width'  => true,
-		'flex-height' => true,
-	) );
-}
+	function blank_theme_setup() {
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on blank_theme, use a find and replace
+		 * to change 'blank_theme' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( 'blank_theme', get_template_directory() . '/languages' );
+
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
+
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+
+		/*
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		 */
+		add_theme_support( 'post-thumbnails' );
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus( array(
+			'menu-1' => esc_html__( 'Primary', 'blank_theme' ),
+		) );
+
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support( 'html5', array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		) );
+
+		// Set up the WordPress core custom background feature.
+		add_theme_support( 'custom-background', apply_filters( 'blank_theme_custom_background_args', array(
+			'default-color' => 'ffffff',
+			'default-image' => '',
+		) ) );
+
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		/**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support( 'custom-logo', array(
+			'height'      => 250,
+			'width'       => 250,
+			'flex-width'  => true,
+			'flex-height' => true,
+		) );
+	}
 endif;
 add_action( 'after_setup_theme', 'blank_theme_setup' );
 
@@ -119,7 +119,7 @@ add_action( 'widgets_init', 'blank_theme_widgets_init' );
 function blank_theme_scripts() {
 	wp_enqueue_style( 'blank_theme-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'blank_theme-navigation', get_template_directory_uri() . '/dist/base.bundle.js', array(), '', true );
+	wp_enqueue_script( 'base' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -146,3 +146,47 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Register all the JS generated by WebPack
+ */
+function blank_theme_register_webpack_script() {
+
+	$dir = new DirectoryIterator( get_template_directory() . '/dist' );
+
+	foreach ( $dir as $file ) {
+
+		if ( 'js' === pathinfo( $file, PATHINFO_EXTENSION ) ) {
+
+			$full_name = basename( $file );
+			$name = substr( basename( $full_name ), 0, strpos( basename( $full_name ), '.' ) );
+			/**
+			 * Register any dependencies for particular script
+			 */
+			switch ( $name ) {
+				case 'base':
+					$deps = null;
+					break;
+				case 'customizer':
+					$deps = 'customize-preview';
+					break;
+				default:
+					$deps = null;
+					break;
+			}
+			/**
+			 * Register script and enqueue by it name
+			 * Currently webpack builds following script
+			 *
+			 * 1. base
+			 * 2. customizer
+			 * 3. home
+			 */
+			wp_register_script( $name, get_template_directory_uri() . '/dist/' . $full_name, $deps, null, true );
+
+		}
+	}
+}
+
+add_action( 'init', 'blank_theme_register_webpack_script' );
+
