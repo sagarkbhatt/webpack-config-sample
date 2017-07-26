@@ -5,7 +5,7 @@
  *
  * Learn more: https://git.io/vWdr2
  */
-export function skip_link_focus_fix() {
+const skip_link_focus_fix = () => {
 	const isIe = /(trident|msie)/i.test( navigator.userAgent );
 
 	if ( isIe && document.getElementById && window.addEventListener ) {
@@ -28,4 +28,5 @@ export function skip_link_focus_fix() {
 			}
 		}, false );
 	}
-}
+};
+export default skip_link_focus_fix;

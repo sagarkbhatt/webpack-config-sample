@@ -76,11 +76,11 @@ module.exports = {
 	},
 	plugins: [
 		extractSass,
-		  new webpack.ProvidePlugin({
-			$: 'jquery',
-			jQuery: 'jquery',
-			'window.jQuery': 'jquery'
-		}),
+		//   new webpack.ProvidePlugin({
+		// 	$: 'jquery',
+		// 	jQuery: 'jquery',
+		// 	'window.jQuery': 'jquery'
+		// }),
 	]
 };
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev-test') {

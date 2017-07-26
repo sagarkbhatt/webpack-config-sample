@@ -5,7 +5,7 @@
  *
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
-export function customizer( $ ) {
+const customizer = ( $ ) => {
 
 	// Site title and description.
 	wp.customize( 'blogname', value => {
@@ -36,3 +36,4 @@ export function customizer( $ ) {
 		} );
 	} );
 }
+export default customizer;
