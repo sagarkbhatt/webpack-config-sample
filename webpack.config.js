@@ -20,7 +20,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: '[name].bundle.js',
+        filename: '[name].[hash].bundle.js',
         sourceMapFilename: '[file].map'
     },
     externals: {
