@@ -22,3 +22,8 @@
 @mixin clearfix-after() {
 	clear: both;
 }
+//PX TO REM
+@function rem-calc($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
