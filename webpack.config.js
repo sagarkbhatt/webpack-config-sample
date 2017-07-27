@@ -82,6 +82,10 @@ module.exports = {
 		// 	jQuery: 'jquery',
 		// 	'window.jQuery': 'jquery'
 		// }),
+		new webpack.HashedModuleIdsPlugin(),
+		new webpack.optimize.CommonsChunkPlugin({
+ 			name: 'runtime'
+		})
 	]
 };
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev-test') {
