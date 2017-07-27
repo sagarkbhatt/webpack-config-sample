@@ -181,6 +181,7 @@ function blank_theme_register_webpack_script() {
 			 * 1. base
 			 * 2. customizer
 			 * 3. home
+			 * 4. runtime ( Webpack bootstrap/manifest file )
 			 */
 			wp_register_script( $name, get_template_directory_uri() . '/dist/' . $full_name, $deps, null, true );
 
