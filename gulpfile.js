@@ -33,9 +33,8 @@ var autoprefixer_browsers = ['last 2 versions', 'ie 9', 'ios 6', 'android 4'];
 // Styles
 gulp.task( 'sass', function() {
   return gulp.src( './sass/*.scss' )
-	.pipe( autoprefixer( autoprefixer_browsers ) )
 	.pipe( sass.sync().on( 'error', sass.logError ) )
-	.pipe( combineMq() )
+	.pipe( autoprefixer( autoprefixer_browsers ) )
 	.pipe( gulp.dest( '.' ) )
 	.pipe( notify( {
 		message: 'TASK: "sass" Completed!',
