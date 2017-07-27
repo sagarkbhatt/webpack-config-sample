@@ -157,7 +157,7 @@ function blank_theme_register_webpack_script() {
 	foreach ( $dir as $file ) {
 
 		if ( 'js' === pathinfo( $file, PATHINFO_EXTENSION ) ) {
-
+			$deps = [];
 			$full_name = basename( $file );
 			$name = substr( basename( $full_name ), 0, strpos( basename( $full_name ), '.' ) );
 			/**
@@ -165,10 +165,10 @@ function blank_theme_register_webpack_script() {
 			 */
 			switch ( $name ) {
 				case 'base':
-					$deps = null;
+					$deps = array( 'runtime' );
 					break;
 				case 'customizer':
-					$deps = 'customize-preview';
+					$deps = array( 'runtime', 'customize-preview' );
 					break;
 				default:
 					$deps = null;
