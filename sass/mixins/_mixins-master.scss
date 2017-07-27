@@ -25,6 +25,6 @@
 //PX TO REM
 //This function will only accept single value
 @function rem-calc($size) {
-  $remSize: $size / 16px;
+  $remSize: $size/16;
   @return #{$remSize}rem;
 }

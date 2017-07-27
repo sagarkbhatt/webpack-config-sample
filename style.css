@@ -2372,7 +2372,7 @@ hr {
 
 ul,
 ol {
-  margin: 0 0 18 18/16pxrem; }
+  margin: 0rem 0rem 1.125rem 1.125rem; }
   ul.no-bullet,
   ul.no-bullet ul,
   ul.no-bullet ol,
@@ -2399,7 +2399,7 @@ img {
   /* Adhere to container width. */ }
 
 figure {
-  margin: 1em 0;
+  margin: 1rem 0;
   /* Extra wide images within figure tags don't overflow the content area. */ }
 
 table {
