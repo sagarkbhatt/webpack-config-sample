@@ -25,7 +25,7 @@ hr {
 	background-color: $color__background-hr;
 	border: 0;
 	height: 1px;
-	margin-bottom: 1.5em;
+	margin-bottom: 1.5rem;
 }
 
 @import "lists";
@@ -36,7 +36,7 @@ img {
 }
 
 figure {
-	margin: 1em 0; /* Extra wide images within figure tags don't overflow the content area. */
+	margin: 1rem 0; /* Extra wide images within figure tags don't overflow the content area. */
 }
 
 @import "tables";
