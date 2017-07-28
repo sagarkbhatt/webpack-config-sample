@@ -6,16 +6,19 @@
  */
 
 // Core variables and mixins
+@import "bootstrap_client_variable";
 @import "vendor/bootstrap/variables";
 @import "vendor/bootstrap/mixins";
-//@import "vendor/bootstrap/custom";
-// Custom variable for bootstrap
-@import "bootstrap_variable";
 
 // Reset and dependencies
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
 @import "normalize";
 @import "vendor/bootstrap/print";
-
+/*--------------------------------------------------------------
+# Bootstrap
+--------------------------------------------------------------*/
 // Core CSS
 @import "vendor/bootstrap/reboot";
 @import "vendor/bootstrap/type";
