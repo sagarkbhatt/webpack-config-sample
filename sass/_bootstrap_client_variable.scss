@@ -246,7 +246,8 @@ $grid-gutter-widths: (
 
 $font-family-sans-serif: $font__main !default;
 $font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+// Inline and block code styles
+$font-family-monospace:  $font__inline !default;
 $font-family-base:       $font-family-sans-serif !default;
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
